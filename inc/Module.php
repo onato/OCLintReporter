@@ -58,7 +58,10 @@ Class Module{
       $numberOfViolations = $priority1 + $priority2 + $priority3;
 
       $ratio = 0;
-      if ( $filesWithViolations > 0 ) $ratio = $numberOfViolations / $numberOfFiles;
+      if ( $filesWithViolations > 0 ) {
+         $ratio = $numberOfViolations / $numberOfFiles;
+         $ratio = number_format($ratio,1);
+      }
       $summary["ratio"] = $ratio;
 
       $this->name = $filename;

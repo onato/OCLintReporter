@@ -37,7 +37,7 @@
 	                    }, {
 	                        display : 'Violations/File',
 	                        name : 'ratio',
-	                        width : 100,
+	                        width : 70,
 	                        sortable : true,
 	                        align : 'right',
 	                        process: didSelectRow
