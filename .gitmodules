@@ -1,0 +1,4 @@
+[submodule "Flexigrid"]
+	path = Flexigrid
+	url = https://github.com/paulopmx/Flexigrid.git
+
