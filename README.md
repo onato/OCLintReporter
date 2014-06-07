@@ -1,7 +1,7 @@
 OCLintReporter
 ==============
 
-This is a PHP framework for presenting your OCLint JSON reports in a comfortable manner. 
+This is a PHP framework for presenting your OCLint JSON reports in a comfortable manner. Just put OCLintReporter on your webserver and have OCLint generate your JSON reports in the reports folder.
 
 Right now it implements enough to be usefull to me. I can sort the overview to workout which module needs work. I can drill down to view its violations and see the offending lines of code in github.
 
