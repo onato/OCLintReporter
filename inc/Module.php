@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ERROR | E_PARSE);
+
 require("inc/Config.php");
 require("inc/Violation.php");
 
@@ -12,6 +14,7 @@ Class Module{
    public $priority1;
    public $priority2;
    public $priority3;
+   public $date;
 
    public $violations;
 
@@ -45,6 +48,7 @@ Class Module{
    }
 
    public function deserializeSummary($filename) {
+      global $config;
       $this->filename = $filename;
       $json = $this->jsonObject();
 
@@ -70,6 +74,8 @@ Class Module{
       $this->priority1 = $priority1;
       $this->priority2 = $priority2;
       $this->priority3 = $priority3;
+
+      $this->date = date ("F d Y H:i:s", filemtime($config["REPORTS_DIR"].$filename));
    }
 
    private function jsonObject() {

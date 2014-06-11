@@ -67,7 +67,14 @@ include("inc/header.php");
 		                        sortable : true,
 		                        align : 'right',
 		                        process: didSelectRow
-		                } ],
+		                	}, {
+		                        display : 'Date',
+		                        name : 'date',
+		                        width : 150,
+		                        sortable : true,
+		                        process: didSelectRow
+		                	} 
+		                ],
 					});
 			});
 		</script>

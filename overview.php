@@ -67,7 +67,8 @@ foreach ($modules as $filename => $module) {
 	    	"filesWithViolations":{$module->filesWithViolations},
 	    	"priority1":{$module->priority1},
 	    	"priority2":{$module->priority2},
-	    	"priority3":{$module->priority3}
+	    	"priority3":{$module->priority3},
+	    	"date":"{$module->date}"
     	}
     }
 EOF;
