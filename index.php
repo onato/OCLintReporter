@@ -9,20 +9,34 @@ include("inc/header.php");
 		<?php include("inc/footer.php"); ?>
 
 		<script type="text/javascript">
+			var flexigrid;
+
 			function didSelectRow( celDiv, id ) {
 	    		$( celDiv ).click( function() {
 	        		window.location.href = "details.php?filename="+id;
 	    		});
 			}
 
+			function onChangeSort(sortname, sortorder){
+				window.location.hash = sortname + "-" + sortorder;
+				flexigrid.flexReload();
+			}
+
+			var hash = window.location.hash;
+			var sortArray = hash.substring(1).split("-");
+			if (!sortArray[0].length) {
+				sortArray = ["ratio","desc"];
+			}
+			console.log(sortArray);
 			$( document ).ready(function() {
-				$('.data').flexigrid(
+				flexigrid = $('.data').flexigrid(
 					{
 						url : 'overview.php',
 		                dataType : 'json',
 						height: "auto",
-						sortname : "ratio",
-	                	sortorder : "desc",
+						sortname : sortArray[0],
+	                	sortorder : sortArray[1],
+	                	onChangeSort: onChangeSort,
 						colModel : [ 
 							{
 		                        display : 'Name',
