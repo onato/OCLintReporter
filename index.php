@@ -9,8 +9,6 @@ include("inc/header.php");
 		<?php include("inc/footer.php"); ?>
 
 		<script type="text/javascript">
-			var flexigrid;
-
 			<?php include("inc/sorting.js"); ?>
 	
 			function didSelectRow( celDiv, id ) {
@@ -20,7 +18,7 @@ include("inc/header.php");
 			}
 
 			$( document ).ready(function() {
-				$('.data').flexigrid(
+				grid = $('.data').flexigrid(
 					{
 						url : 'overview.php',
 		                dataType : 'json',

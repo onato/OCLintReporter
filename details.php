@@ -42,8 +42,6 @@ $module->deserialize($filename);
 		<?php include("inc/footer.php"); ?>
 
 		<script type="text/javascript">
-			var flexigrid;
-
 			<?php include("inc/sorting.js"); ?>
 	
 			function didSelectRow( celDiv, id ) {
@@ -56,7 +54,7 @@ $module->deserialize($filename);
 
 			$( document ).ready(function() {
 				$('.overview').flexigrid({height:25	});
-				flexigrid = $('.data').flexigrid(
+				grid = $('.data').flexigrid(
 					{
 						url : 'module.php?filename=<?php echo $filename; ?>',
 		                dataType : 'json',

@@ -1,6 +1,8 @@
+			var grid;
+
 			function onChangeSort(sortname, sortorder){
 				window.location.hash = sortname + "-" + sortorder;
-				flexigrid.flexReload();
+				grid.flexReload();
 			}
 
 			var hash = window.location.hash;
