@@ -10,6 +10,7 @@ Class Module{
 
    public $name;
    public $ratio;
+   public $numberOfFiles;
    public $filesWithViolations;
    public $priority1;
    public $priority2;
@@ -70,6 +71,7 @@ Class Module{
 
       $this->name = $filename;
       $this->ratio = $ratio;
+      $this->numberOfFiles = $numberOfFiles;
       $this->filesWithViolations = $filesWithViolations;
       $this->priority1 = $priority1;
       $this->priority2 = $priority2;

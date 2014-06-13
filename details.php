@@ -7,9 +7,34 @@ $filename = $_GET["filename"];
 
 $title = "OCLint Report (" . $filename . ")";
 include("inc/header.php");
-?>
 
-		<strong><a href="http://docs.oclint.org/en/dev/rules/">OCLint Rule Documentation</a></strong>
+$module = new Module();
+$module->deserialize($filename);
+?>
+		<table class="overview">
+			<thead>
+				<th width="100">Name</th>
+				<th width="50">Number of Fileß</th>
+				<th width="100">Violations/File</th>
+				<th width="50">Files with Violations</th>
+				<th width="50">Priority 1</th>
+				<th width="50">Priority 2</th>
+				<th width="50">Priority 3</th>
+				<th width="200">Date</th>
+				<th width="200">Rules</th>
+			</thead>
+			<tr>
+				<td><?php echo($module->name); ?></td>
+				<td><?php echo($module->numberOfFiles); ?></td>
+				<td><?php echo($module->ratio); ?></td>
+				<td><?php echo($module->filesWithViolations); ?></td>
+				<td><?php echo($module->priority1); ?></td>
+				<td><?php echo($module->priority2); ?></td>
+				<td><?php echo($module->priority3); ?></td>
+				<td><?php echo($module->date); ?></td>
+				<td><a href="http://docs.oclint.org/en/dev/rules/">OCLint Rule Documentation</a></td>
+			</tr>
+		</table>
 
 		<table class="data">
 		</table>
@@ -30,6 +55,7 @@ include("inc/header.php");
 			}
 
 			$( document ).ready(function() {
+				$('.overview').flexigrid({height:25	});
 				flexigrid = $('.data').flexigrid(
 					{
 						url : 'module.php?filename=<?php echo $filename; ?>',
