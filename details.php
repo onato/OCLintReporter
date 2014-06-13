@@ -17,6 +17,10 @@ include("inc/header.php");
 		<?php include("inc/footer.php"); ?>
 
 		<script type="text/javascript">
+			var flexigrid;
+
+			<?php include("inc/sorting.js"); ?>
+	
 			function didSelectRow( celDiv, id ) {
 	    		$( celDiv ).click( function() {
 	    			console.log(celDiv);
@@ -26,13 +30,14 @@ include("inc/header.php");
 			}
 
 			$( document ).ready(function() {
-				$('.data').flexigrid(
+				flexigrid = $('.data').flexigrid(
 					{
 						url : 'module.php?filename=<?php echo $filename; ?>',
 		                dataType : 'json',
 						height: "auto",
-						sortname : "priority",
-	                	sortorder : "asc",
+						sortname : sortArray[0],
+	                	sortorder : sortArray[1],
+	                	onChangeSort: onChangeSort,
 						colModel : [ 
 							{
 		                        display : 'Name',

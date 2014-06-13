@@ -11,25 +11,16 @@ include("inc/header.php");
 		<script type="text/javascript">
 			var flexigrid;
 
+			<?php include("inc/sorting.js"); ?>
+	
 			function didSelectRow( celDiv, id ) {
 	    		$( celDiv ).click( function() {
 	        		window.location.href = "details.php?filename="+id;
 	    		});
 			}
 
-			function onChangeSort(sortname, sortorder){
-				window.location.hash = sortname + "-" + sortorder;
-				flexigrid.flexReload();
-			}
-
-			var hash = window.location.hash;
-			var sortArray = hash.substring(1).split("-");
-			if (!sortArray[0].length) {
-				sortArray = ["ratio","desc"];
-			}
-			console.log(sortArray);
 			$( document ).ready(function() {
-				flexigrid = $('.data').flexigrid(
+				$('.data').flexigrid(
 					{
 						url : 'overview.php',
 		                dataType : 'json',
