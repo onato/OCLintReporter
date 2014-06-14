@@ -36,6 +36,13 @@ include("inc/header.php");
 		                        align : 'left',
 		                        process: didSelectRow
 		                    }, {
+		                        display : 'Number of Files',
+		                        name : 'numberOfFiles',
+		                        width : 100,
+		                        sortable : true,
+		                        align : 'right',
+		                        process: didSelectRow
+		                    }, {
 		                        display : 'Violations/File',
 		                        name : 'ratio',
 		                        width : 70,

@@ -63,6 +63,7 @@ foreach ($modules as $filename => $module) {
     	"id": "$module->name",
     	"cell": {
 	    	"name": "$module->name",
+	    	"numberOfFiles": "$module->numberOfFiles",
 	    	"ratio":$ratio,
 	    	"filesWithViolations":{$module->filesWithViolations},
 	    	"priority1":{$module->priority1},
