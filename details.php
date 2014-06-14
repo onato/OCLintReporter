@@ -9,7 +9,7 @@ $title = "OCLint Report (" . $reportName . ")";
 include("inc/header.php");
 
 $module = new Module();
-$module->deserialize($reportName);
+$module->deserialize($config["REPORTS_DIR"].$reportName);
 ?>
 		<div id="container" style="min-width: 600px; height: 400px; margin: 0 auto"></div>
 		<table class="overview">
