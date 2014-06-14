@@ -13,7 +13,7 @@ while (false !== ($filename = readdir($dh))) {
     $ext = pathinfo($config["REPORTS_DIR"].$filename, PATHINFO_EXTENSION);
     if ($ext == "json") {
 	    $module = new Module();
-	    $module->deserializeSummary($filename);
+	    $module->deserializeSummary($config["REPORTS_DIR"].$filename);
 		$modules[$filename] = $module;
     }
 }
@@ -57,6 +57,9 @@ foreach ($modules as $filename => $module) {
 		echo ",";
 	}
 	$isFirst = false;
+
+	$date = $module->date->format($config["DATE_FORMAT_LONG"]);
+
 	echo <<< EOF
 
     {
@@ -69,7 +72,7 @@ foreach ($modules as $filename => $module) {
 	    	"priority1":{$module->priority1},
 	    	"priority2":{$module->priority2},
 	    	"priority3":{$module->priority3},
-	    	"date":"{$module->date}"
+	    	"date":"{$date}"
     	}
     }
 EOF;

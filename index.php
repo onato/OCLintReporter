@@ -5,6 +5,7 @@ include("inc/header.php");
 
 <table class="data">
 </table>
+<div id="container" style="min-width: 600px; height: 400px; margin: 0 auto"></div>
 
 		<?php include("inc/footer.php"); ?>
 
@@ -88,5 +89,9 @@ include("inc/header.php");
 					});
 			});
 		</script>
+		<script src="js/vendor/highcharts/js/highcharts.js"></script>
+		<script src="js/vendor/highcharts/js/modules/exporting.js"></script>
+		<?php 
+		include("overviewGraph.php"); ?>
 
 </body></html>

@@ -9,8 +9,10 @@ Class Module{
    private $jsonObject;
 
    public $name;
+   public $pathToFile;
    public $ratio;
    public $numberOfFiles;
+   public $numberOfViolations;
    public $filesWithViolations;
    public $priority1;
    public $priority2;
@@ -20,11 +22,12 @@ Class Module{
    public $violations;
 
 
-   public function deserialize($filename) {
+   public function deserialize($pathToFile) {
       global $config;
 
-      $this->filename = $filename;
-      $this->deserializeSummary($filename);
+      $this->filename = basename($pathToFile);
+      $this->pathToFile = $pathToFile;
+      $this->deserializeSummary($pathToFile);
 
       $json = $this->jsonObject();
       $this->violations = array();
@@ -49,9 +52,10 @@ Class Module{
       $this->jsonObject = "";
    }
 
-   public function deserializeSummary($filename) {
+   public function deserializeSummary($pathToFile) {
       global $config;
-      $this->filename = $filename;
+      $this->filename = basename($pathToFile);
+      $this->pathToFile = $pathToFile;
       $json = $this->jsonObject();
 
       $summary = $json["summary"];
@@ -70,25 +74,44 @@ Class Module{
       }
       $summary["ratio"] = $ratio;
 
-      $this->name = $filename;
+      $this->name = $this->filename;
       $this->ratio = $ratio;
       $this->numberOfFiles = $numberOfFiles;
+      $this->numberOfViolations = $numberOfViolations;
       $this->filesWithViolations = $filesWithViolations;
       $this->priority1 = $priority1;
       $this->priority2 = $priority2;
       $this->priority3 = $priority3;
 
-      $this->date = date ("F d Y H:i:s", filemtime($config["REPORTS_DIR"].$filename));
+      $datetime = new DateTime();
+      $datetime->setTimestamp(filemtime($pathToFile));
+      $this->date = $datetime;
    }
 
    private function jsonObject() {
       global $config;
 
       // if (!isset($this->jsonObject)) {
-         $string = file_get_contents($config["REPORTS_DIR"].$this->filename);
+         $string = file_get_contents($this->pathToFile);
          $this->jsonObject = json_decode($string, true);
       // }
       return $this->jsonObject;
    }
 };
+
+
+function modulesInDirectory($directory) {
+   $dh  = opendir($directory);
+   $modules = array();
+   while (false !== ($filename = readdir($dh))) {
+       $ext = pathinfo($directory.$filename, PATHINFO_EXTENSION);
+       if ($ext == "json") {
+           $module = new Module();
+           $module->deserializeSummary($directory.$filename);
+           $modules[$filename] = $module;
+       }
+   }
+
+   return $modules;
+}
 ?>

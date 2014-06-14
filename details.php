@@ -16,9 +16,9 @@ $module->deserialize($reportName);
 			<thead>
 				<tr>
 					<th width="100">Name</th>
-					<th width="50">Number of Fileß</th>
-					<th width="100">Violations/File</th>
-					<th width="50">Files with Violations</th>
+					<th width="80">Number of Files</th>
+					<th width="70">Violations/File</th>
+					<th width="100">Files with Violations</th>
 					<th width="50">Priority 1</th>
 					<th width="50">Priority 2</th>
 					<th width="50">Priority 3</th>
@@ -34,7 +34,7 @@ $module->deserialize($reportName);
 				<td><?php echo($module->priority1); ?></td>
 				<td><?php echo($module->priority2); ?></td>
 				<td><?php echo($module->priority3); ?></td>
-				<td><?php echo($module->date); ?></td>
+				<td><?php echo($module->date->format($config["DATE_FORMAT_LONG"])); ?></td>
 				<td><a href="http://docs.oclint.org/en/dev/rules/">OCLint Rule Documentation</a></td>
 			</tr>
 		</table>
@@ -112,7 +112,7 @@ $module->deserialize($reportName);
 		</script>
 		<script src="js/vendor/highcharts/js/highcharts.js"></script>
 		<script src="js/vendor/highcharts/js/modules/exporting.js"></script>
-		<?php include("graph.php"); ?>
+		<?php include("reportGraph.php"); ?>
 
 
 	</body>

@@ -16,8 +16,7 @@ if (isset($_POST["sortorder"]) && $_POST["sortorder"]=="desc") {
 
 
 $module = new Module();
-$module->deserialize($reportName);
-
+$module->deserialize($config["REPORTS_DIR"].$reportName);
 $count = count($module->violations);
 
 echo <<< EOF

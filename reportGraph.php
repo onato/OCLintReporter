@@ -15,11 +15,12 @@ sort($builds);
 $results = array();
 foreach ($builds as $buildNumber) {
     $module = new Module();
-    $module->deserialize($buildNumber."/".$reportName);
+    $module->deserialize($reportsDir.$buildNumber."/".$reportName);
     $result = array();
-    $result["priority1"] = $module->priority1;
-    $result["priority2"] = $module->priority2;
-    $result["priority3"] = $module->priority3;
+    $result["Priority 1"] = $module->priority1;
+    $result["Priority 2"] = $module->priority2;
+    $result["Priority 3"] = $module->priority3;
+    $result["Date"] = $module->date;
     $results[$buildNumber] = $result;
 }
 
@@ -28,7 +29,7 @@ foreach ($results as $buildNumber => $build) {
     if (strlen($builds) > 0) {
         $builds .= ",";
     }
-    $builds .= "'".$buildNumber."'";
+    $builds .= "'".$build["Date"]->format($config["DATE_FORMAT_SHORT"])."'";
 }
 
 ?>
@@ -40,23 +41,21 @@ $(function () {
                 type: 'line'
             },
             title: {
-                text: 'Violations per Build'
-            },
-            subtitle: {
                 text: '<?php echo pathinfo($reportName)["filename"]; ?>'
             },
+            subtitle: {
+                text: 'Violations per Build'
+            },
             legend: {
-                align: 'left',
-                verticalAlign: 'top',
-                y: 20,
-                floating: true,
-                borderWidth: 0
             },
             tooltip: {
                 shared: true,
                 crosshairs: true
             },
             xAxis: {
+                title: {
+                    text: 'Builds over Time'
+                },
                 categories: [<?php echo $builds; ?>]
             },
             yAxis: {
@@ -75,27 +74,7 @@ $(function () {
             },
             series: [
 <?php
-$i=0;
-foreach (array_values($results)[0] as $key => $value) {
-    if ($i++>0) {
-        echo ",";
-    }
-
-    $values = "";
-    foreach ($results as $buildNumber => $build) {
-        if (strlen($values) > 0) {
-            $values .= ",";
-        }
-        $values .= "".$build[$key]."";
-    }
-    echo <<< EOF
-
-                {
-                    name: '$key',
-                    data: [$values]
-                }
-EOF;
-}
+include("inc/graphData.php");
 ?>      
             ]
         });
