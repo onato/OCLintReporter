@@ -100,7 +100,9 @@ textarea {
 
 a {color:#FF6600;}
 
-
+#header{padding:10px;}
+#header img{vertical-align: bottom;}
+#header a {text-decoration: none; font-size: 23px; line-height: 35px;}
 
 
 

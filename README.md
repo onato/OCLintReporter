@@ -1,4 +1,4 @@
-OCLintReporter
+![Overview](css/images/logo.png)OCLintReporter
 ==============
 
 This is a PHP framework for presenting your OCLint JSON reports in a comfortable manner. Just put OCLintReporter on your webserver and have OCLint generate your JSON reports in the reports folder.
@@ -23,3 +23,7 @@ You can then drill down into the specific report to see the violations. You can 
 ##Clicking on a violation will show you the code on github.
 
 ![Code](screenshots/Code.png)
+
+
+##Credits
+The logo is based on Poop by Mayene de La Cruz from The Noun Project.
