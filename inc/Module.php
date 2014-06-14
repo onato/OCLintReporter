@@ -1,8 +1,8 @@
 <?php
 error_reporting(E_ERROR | E_PARSE);
 
-require("inc/Config.php");
-require("inc/Violation.php");
+require_once(dirname(__FILE__)."/Config.php");
+require_once(dirname(__FILE__)."/Violation.php");
 
 Class Module{
    private $filename;
@@ -22,6 +22,7 @@ Class Module{
 
    public function deserialize($filename) {
       global $config;
+
       $this->filename = $filename;
       $this->deserializeSummary($filename);
 

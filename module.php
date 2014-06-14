@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 require("inc/Config.php");
 require("inc/Module.php");
 
-$filename = $_GET["filename"];
+$reportName = $_GET["reportName"];
 $sortBy = "priority";
 if (isset($_POST["sortname"])) {
 	$sortBy = $_POST["sortname"];
@@ -16,7 +16,7 @@ if (isset($_POST["sortorder"]) && $_POST["sortorder"]=="desc") {
 
 
 $module = new Module();
-$module->deserialize($filename);
+$module->deserialize($reportName);
 
 $count = count($module->violations);
 

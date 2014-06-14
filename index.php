@@ -13,7 +13,7 @@ include("inc/header.php");
 	
 			function didSelectRow( celDiv, id ) {
 	    		$( celDiv ).click( function() {
-	        		window.location.href = "details.php?filename="+id;
+	        		window.location.href = "details.php?reportName="+id;
 	    		});
 			}
 

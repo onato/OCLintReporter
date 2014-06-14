@@ -3,25 +3,28 @@
 require("inc/Config.php");
 require("inc/Module.php");
 
-$filename = $_GET["filename"];
+$reportName = $_GET["reportName"];
 
-$title = "OCLint Report (" . $filename . ")";
+$title = "OCLint Report (" . $reportName . ")";
 include("inc/header.php");
 
 $module = new Module();
-$module->deserialize($filename);
+$module->deserialize($reportName);
 ?>
+		<div id="container" style="min-width: 600px; height: 400px; margin: 0 auto"></div>
 		<table class="overview">
 			<thead>
-				<th width="100">Name</th>
-				<th width="50">Number of Fileß</th>
-				<th width="100">Violations/File</th>
-				<th width="50">Files with Violations</th>
-				<th width="50">Priority 1</th>
-				<th width="50">Priority 2</th>
-				<th width="50">Priority 3</th>
-				<th width="200">Date</th>
-				<th width="200">Rules</th>
+				<tr>
+					<th width="100">Name</th>
+					<th width="50">Number of Fileß</th>
+					<th width="100">Violations/File</th>
+					<th width="50">Files with Violations</th>
+					<th width="50">Priority 1</th>
+					<th width="50">Priority 2</th>
+					<th width="50">Priority 3</th>
+					<th width="200">Date</th>
+					<th width="200">Rules</th>
+				</tr>
 			</thead>
 			<tr>
 				<td><?php echo($module->name); ?></td>
@@ -56,7 +59,7 @@ $module->deserialize($filename);
 				$('.overview').flexigrid({height:25	});
 				grid = $('.data').flexigrid(
 					{
-						url : 'module.php?filename=<?php echo $filename; ?>',
+						url : 'module.php?reportName=<?php echo $reportName; ?>',
 		                dataType : 'json',
 						height: "auto",
 						sortname : sortArray[0],
@@ -107,5 +110,10 @@ $module->deserialize($filename);
 					});
 			});
 		</script>
+		<script src="js/vendor/highcharts/js/highcharts.js"></script>
+		<script src="js/vendor/highcharts/js/modules/exporting.js"></script>
+		<?php include("graph.php"); ?>
+
+
 	</body>
 </html>
