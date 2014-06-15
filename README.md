@@ -1,4 +1,4 @@
-![Overview](css/images/logo.png)OCLintReporter
+OCLintReporter
 ==============
 
 This is a PHP framework for presenting your OCLint JSON reports in a comfortable manner. Just put OCLintReporter on your webserver and have OCLint generate your JSON reports in the reports folder.

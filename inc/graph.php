@@ -42,8 +42,6 @@ $(function () {
                     enabled: true
                 },
                 tooltip: {
-                    shared: true,
-                    crosshairs: true
                 },
                 yAxis: {
                     title: {
