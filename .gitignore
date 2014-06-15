@@ -1,3 +1,7 @@
 reports/*.json
 reports/*/
+
+data/details/*
+data/overview/*
+
 .DS_Store

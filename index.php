@@ -1,11 +1,12 @@
 <?php
 $title = "OCLint Reporter";
 include("inc/header.php");
+include("inc/Module.php");
 ?>	
 
 <table class="data">
 </table>
-<div id="container" style="min-width: 600px; height: 400px; margin: 0 auto"></div>
+<div id="container" style="min-width: 320px; height: 400px; margin: 0 auto"></div>
 
 		<?php include("inc/footer.php"); ?>
 
@@ -89,9 +90,20 @@ include("inc/header.php");
 					});
 			});
 		</script>
-		<script src="js/vendor/highcharts/js/highcharts.js"></script>
-		<script src="js/vendor/highcharts/js/modules/exporting.js"></script>
-		<?php 
-		include("overviewGraph.php"); ?>
+<?php
+$names = "";
+$reportsDir = $config["REPORTS_DIR"];
+$modules = modulesInDirectory($reportsDir);
+foreach ($modules as $key => $module) {
+    if (strlen($names) > 0) {
+        $names .= ",";
+    }
+
+    $names .= "'".$module->name."'";
+}
+$url = "'data/overview/'+name+'.json'";
+$title = pathinfo($reportName)["filename"];
+include("inc/graph.php");
+?>
 
 </body></html>
