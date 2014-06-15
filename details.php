@@ -11,7 +11,7 @@ include("inc/header.php");
 $module = new Module();
 $module->deserialize($config["REPORTS_DIR"].$reportName.".json");
 ?>
-		<div id="container" style="min-width: 600px; height: 400px; margin: 0 auto"></div>
+		<div id="highcharts-container" style="min-width: 600px; height: 400px; margin: 0 auto"></div>
 		<table class="overview">
 			<thead>
 				<tr>

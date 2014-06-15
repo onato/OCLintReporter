@@ -28,9 +28,9 @@ $(function () {
         // create the chart when all data is loaded
         function createChart() {
             // Create the chart
-            $('#container').highcharts('StockChart', {
+            $('#highcharts-container').highcharts('StockChart', {
                 chart: {
-                    zoomType: 'x'
+                    // zoomType: 'x'
                 },
                 title: {
                     text: '<?php echo $title; ?>'
@@ -41,8 +41,11 @@ $(function () {
                 legend: {
                     enabled: true
                 },
-                tooltip: {
-                },
+				tooltip: {
+			        crosshairs: true,
+			        followPointer: true,
+			        followTouchMove: true
+			    },
                 yAxis: {
                     title: {
                         text: 'Number of Violations'
