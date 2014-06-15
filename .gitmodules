@@ -1,4 +1,0 @@
-[submodule "Flexigrid"]
-	path = js/vendor/flexigrid
-	url = https://github.com/paulopmx/Flexigrid.git
-
