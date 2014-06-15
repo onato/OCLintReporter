@@ -31,6 +31,8 @@ $(function () {
             $('#highcharts-container').highcharts('StockChart', {
                 chart: {
                     // zoomType: 'x'
+                    pinchType: false,
+                    zoomType: ""
                 },
                 title: {
                     text: '<?php echo $title; ?>'
@@ -43,8 +45,8 @@ $(function () {
                 },
 				tooltip: {
 			        crosshairs: true,
-			        followPointer: true,
-			        followTouchMove: true
+			        followPointer: false,
+			        followTouchMove: false
 			    },
                 yAxis: {
                     title: {
