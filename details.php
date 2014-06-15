@@ -9,7 +9,7 @@ $title = "OCLint Report (" . $reportName . ")";
 include("inc/header.php");
 
 $module = new Module();
-$module->deserialize($config["REPORTS_DIR"].$reportName);
+$module->deserialize($config["REPORTS_DIR"].$reportName.".json");
 ?>
 		<div id="container" style="min-width: 600px; height: 400px; margin: 0 auto"></div>
 		<table class="overview">
@@ -59,7 +59,7 @@ $module->deserialize($config["REPORTS_DIR"].$reportName);
 				$('.overview').flexigrid({height:25	});
 				grid = $('.data').flexigrid(
 					{
-						url : 'module.php?reportName=<?php echo $reportName; ?>',
+						url : 'module.php?reportName=<?php echo $reportName; ?>.json',
 		                dataType : 'json',
 						height: "auto",
 						sortname : sortArray[0],
@@ -110,10 +110,13 @@ $module->deserialize($config["REPORTS_DIR"].$reportName);
 					});
 			});
 		</script>
-		<script src="js/vendor/highcharts/js/highcharts.js"></script>
-		<script src="js/vendor/highcharts/js/modules/exporting.js"></script>
-		<?php include("reportGraph.php"); ?>
 
-
+<?php
+$names = '"Priotity-1","Priotity-2","Priotity-3"';
+$reportsDir = $config["REPORTS_DIR"];
+$url = "'data/details/$reportName/'+name+'.json'";
+$title = $reportName;
+include("inc/graph.php");
+?>
 	</body>
 </html>

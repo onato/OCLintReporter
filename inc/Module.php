@@ -5,10 +5,10 @@ require_once(dirname(__FILE__)."/Config.php");
 require_once(dirname(__FILE__)."/Violation.php");
 
 Class Module{
-   private $filename;
    private $jsonObject;
 
    public $name;
+   public $filename;
    public $pathToFile;
    public $ratio;
    public $numberOfFiles;
@@ -74,7 +74,8 @@ Class Module{
       }
       $summary["ratio"] = $ratio;
 
-      $this->name = $this->filename;
+      $info = pathinfo($this->filename);
+      $this->name = basename($this->filename,'.'.$info['extension']);
       $this->ratio = $ratio;
       $this->numberOfFiles = $numberOfFiles;
       $this->numberOfViolations = $numberOfViolations;
@@ -84,7 +85,7 @@ Class Module{
       $this->priority3 = $priority3;
 
       $datetime = new DateTime();
-      $datetime->setTimestamp(filemtime($pathToFile));
+      $datetime->setTimestamp($json["timestamp"]);
       $this->date = $datetime;
    }
 
