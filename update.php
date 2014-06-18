@@ -5,6 +5,8 @@ include_once("inc/Module.php");
 $reportsDir = $config["REPORTS_DIR"];
 $archiveDir = $config["ARCHIVE_DIR"];
 
+addDataDirectory();
+
 
 $modules = modulesInDirectory($reportsDir);
 $firstModule = array_values($modules)[0];
@@ -79,5 +81,19 @@ function writeDetail($values, $filename) {
 	}
 }
 
+function addDataDirectory() {
+	$path = "data/";
+	if (!file_exists($path)) {
+	    mkdir($path, 0777, true);
+	}
+	$path = "data/details";
+	if (!file_exists($path)) {
+	    mkdir($path, 0777, true);
+	}
+	$path = "data/overview";
+	if (!file_exists($path)) {
+	    mkdir($path, 0777, true);
+	}
+}
 
 ?>
