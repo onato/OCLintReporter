@@ -32,7 +32,17 @@ foreach ($modules as $key => $tmpModule) {
 	    }
 	}
 
-	// print_r($values);
+	$moduleForBuildTime->deserializeSummary($reportsDir.$firstModule->filename);
+	$timestamp = $moduleForBuildTime->date->getTimestamp()*1000;
+	$module->deserializeSummary($reportsDir.$filename);
+	$summaryValues[$timestamp] = $module->numberOfViolations;
+	$detailValues[$timestamp] = array(
+		"Priotity-1"=>$module->priority1,
+		"Priotity-2"=>$module->priority2,
+		"Priotity-3"=>$module->priority3);
+
+
+	// print_r($summaryValues);
 	ksort($summaryValues);
 	ksort($detailValues);
 	// print_r($values);
