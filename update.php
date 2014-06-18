@@ -5,9 +5,6 @@ include_once("inc/Module.php");
 $reportsDir = $config["REPORTS_DIR"];
 $archiveDir = $config["ARCHIVE_DIR"];
 
-addDataDirectory();
-
-
 $modules = modulesInDirectory($reportsDir);
 $firstModule = array_values($modules)[0];
 
@@ -68,7 +65,10 @@ function writeDetail($values, $filename) {
 	$name = basename($filename,'.'.$info['extension']);
 	$path = "data/details/".$name."/";
 	if (!file_exists($path)) {
-	    mkdir($path, 0777, true);
+	    if (!@mkdir($path, 0777, true)) {
+		    $error = error_get_last();
+		    print_r($error);
+		}
 	}
 
 	foreach (array_values($values)[0] as $key => $value) {
@@ -78,21 +78,6 @@ function writeDetail($values, $filename) {
 		}
 		$json = json_encode($arrayValues, JSON_PRETTY_PRINT);
 		file_put_contents($path.$key.".json", $json, LOCK_EX);
-	}
-}
-
-function addDataDirectory() {
-	$path = "data/";
-	if (!file_exists($path)) {
-	    mkdir($path, 0777, true);
-	}
-	$path = "data/details";
-	if (!file_exists($path)) {
-	    mkdir($path, 0777, true);
-	}
-	$path = "data/overview";
-	if (!file_exists($path)) {
-	    mkdir($path, 0777, true);
 	}
 }
 
