@@ -14,6 +14,8 @@ Class Violation{
    public $module;
 
    public function deserialize($dict) {
+      global $config;
+
       $path = $dict["path"];
       $this->path = str_replace($config["ROOT"], "", $path);
       $this->name = basename($path);
