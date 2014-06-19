@@ -51,6 +51,7 @@ foreach ($modules as $key => $tmpModule) {
 }
 
 function writeOverview($values, $filename) {
+	makeDir("data/overview/");
 	$path = "data/overview/".$filename;
 	$arrayValues = array();
 	foreach ($values as $key => $value) {
@@ -64,12 +65,7 @@ function writeDetail($values, $filename) {
     $info = pathinfo($filename);
 	$name = basename($filename,'.'.$info['extension']);
 	$path = "data/details/".$name."/";
-	if (!file_exists($path)) {
-	    if (!@mkdir($path, 0777, true)) {
-		    $error = error_get_last();
-		    print_r($error);
-		}
-	}
+	makeDir($path);
 
 	foreach (array_values($values)[0] as $key => $value) {
 		$arrayValues = array();
@@ -78,6 +74,15 @@ function writeDetail($values, $filename) {
 		}
 		$json = json_encode($arrayValues, JSON_PRETTY_PRINT);
 		file_put_contents($path.$key.".json", $json, LOCK_EX);
+	}
+}
+
+function makeDir($path) {
+	if (!file_exists($path)) {
+	    if (!@mkdir($path, 0777, true)) {
+		    $error = error_get_last();
+		    print_r($error);
+		}
 	}
 }
 

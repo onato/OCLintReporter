@@ -34,19 +34,7 @@ Class Module{
 
       foreach ($json["violation"] as $violationDict) {
          $violation = new Violation();
-         $path = $violationDict["path"];
-         $violation->path = str_replace($config["ROOT"], "", $path);
-         $violation->name = basename($path);
-
-         $violation->startLine = $violationDict["startLine"];
-         $violation->startColumn = $violationDict["startColumn"];
-         $violation->endLine = $violationDict["endLine"];
-         $violation->endColumn = $violationDict["endColumn"];
-         $violation->rule = $violationDict["rule"];
-         $violation->priority = $violationDict["priority"];
-         $violation->message = $violationDict["message"];
-         $violation->link = $config["GITHUB_ROOT"] . $violation->path . "#L" . $violation->startLine . "-" . $violation->endLine;
-
+         $violation->deserialize($violationDict);
          $this->violations[] = $violation;
       }
       $this->jsonObject = "";
@@ -92,10 +80,10 @@ Class Module{
    private function jsonObject() {
       global $config;
 
-      // if (!isset($this->jsonObject)) {
+      if (!isset($this->jsonObject)) {
          $string = file_get_contents($this->pathToFile);
          $this->jsonObject = json_decode($string, true);
-      // }
+      }
       return $this->jsonObject;
    }
 };
