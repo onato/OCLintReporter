@@ -47,22 +47,43 @@ $module->deserialize($config["REPORTS_DIR"].$reportName.".json");
 		<script type="text/javascript">
 			<?php include("inc/sorting.js"); ?>
 	
+			var prompt;
 			function didSelectRow( celDiv, id ) {
 	    		$( celDiv ).click( function() {
-	    			console.log(celDiv);
 	    			var link = $(celDiv).parent().siblings().last().first().text();
 	    			var filename = link.split("/").pop().split("-").shift();
 	    			filename = filename.replace("#L", ":");
 
 	    			if (navigator.platform == "MacIntel") {
-						if(window.prompt("Continue to Github?\n\nOpen your project in Xcode \nShift-Command-O (⇧⌘O) \nPaste this text.\n\n", filename)){
-							window.location.href = link;
-						}
+	    				var promptOptions = {
+							title: "Open your project in Xcode<br/>Shift-Command-O (⇧⌘O) <br/>Paste this text.",
+							buttons: {
+								confirm: {
+									label: "Show this violation in Github"
+								}
+							},
+							value:filename,
+							callback: function(result) {                
+								if (result !== null) {                                             
+									window.location.href = link;
+								}
+							}
+						};
+
+						prompt = bootbox.prompt(promptOptions);
+						$("input.bootbox-input.bootbox-input-text.form-control").focus(function(){
+							this.select();
+						});
 	    			}else{
 	    				window.location.href = link;
 	    			}
 	    		});
 			}
+			$(document).on("keypress", function(e) {
+				if ( e.metaKey && ( e.which === 99 ) ) {
+					prompt.modal("hide");
+				}
+			});
 
 			$( document ).ready(function() {
 				$('.overview').flexigrid({height:25	});
