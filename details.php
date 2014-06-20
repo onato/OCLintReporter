@@ -51,7 +51,12 @@ $module->deserialize($config["REPORTS_DIR"].$reportName.".json");
 	    		$( celDiv ).click( function() {
 	    			console.log(celDiv);
 	    			var link = $(celDiv).parent().siblings().last().first().text();
-	        		window.location.href = link;
+	    			var filename = link.split("/").pop().split("-").shift();
+	    			filename = filename.replace("#L", ":");
+
+	    			if(window.prompt("Press OK or enter to continue to Github?\n\nPaste this text into Xcodes quick open.\n\n", filename)){
+		        		window.location.href = link;
+	    			}
 	    		});
 			}
 
