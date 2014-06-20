@@ -54,7 +54,7 @@ $module->deserialize($config["REPORTS_DIR"].$reportName.".json");
 	    			var filename = link.split("/").pop().split("-").shift();
 	    			filename = filename.replace("#L", ":");
 
-	    			if(window.prompt("Press OK or enter to continue to Github?\n\nPaste this text into Xcodes quick open.\n\n", filename)){
+	    			if(window.prompt("Continue to Github?\n\nOpen your project in Xcode \nCommand ⌘ Shift ⇧ o \nPaste this text.\n\n", filename)){
 		        		window.location.href = link;
 	    			}
 	    		});
