@@ -5,7 +5,6 @@ require_once(dirname(__FILE__)."/Config.php");
 require_once(dirname(__FILE__)."/Violation.php");
 
 Class Module{
-   private $jsonObject;
 
    public $name;
    public $filename;
@@ -80,10 +79,9 @@ Class Module{
    private function jsonObject() {
       global $config;
 
-      if (!isset($this->jsonObject)) {
-         $string = file_get_contents($this->pathToFile);
-         $this->jsonObject = json_decode($string, true);
-      }
+      $string = file_get_contents($this->pathToFile);
+      $this->jsonObject = json_decode($string, true);
+
       return $this->jsonObject;
    }
 };
