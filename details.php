@@ -54,8 +54,12 @@ $module->deserialize($config["REPORTS_DIR"].$reportName.".json");
 	    			var filename = link.split("/").pop().split("-").shift();
 	    			filename = filename.replace("#L", ":");
 
-	    			if(window.prompt("Continue to Github?\n\nOpen your project in Xcode \nCommand ⌘ Shift ⇧ o \nPaste this text.\n\n", filename)){
-		        		window.location.href = link;
+	    			if (navigator.platform == "MacIntel") {
+						if(window.prompt("Continue to Github?\n\nOpen your project in Xcode \nShift-Command-O (⇧⌘O) \nPaste this text.\n\n", filename)){
+							window.location.href = link;
+						}
+	    			}else{
+	    				window.location.href = link;
 	    			}
 	    		});
 			}
