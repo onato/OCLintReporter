@@ -81,7 +81,9 @@ $module->deserialize($config["REPORTS_DIR"].$reportName.".json");
 			}
 			$(document).on("keypress", function(e) {
 				if ( e.metaKey && ( e.which === 99 ) ) {
-					prompt.modal("hide");
+					setTimeout(function() {
+						prompt.modal("hide");
+					}, 500);
 				}
 			});
 

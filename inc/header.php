@@ -17,10 +17,10 @@
         <link rel="apple-touch-icon" sizes="120x120" href="css/images/apple-touch-icon-120x120.png">
         <link rel="apple-touch-icon" sizes="152x152" href="css/images/apple-touch-icon-152x152.png">
 
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="js/vendor/flexigrid/css/flexigrid.css" />
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" type="text/css" href="js/vendor/flexigrid/css/flexigrid.css" />
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
