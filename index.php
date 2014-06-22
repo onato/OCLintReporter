@@ -106,18 +106,4 @@ $url = "'data/overview/'+name+'.json'";
 $title = pathinfo($reportName)["filename"];
 include("inc/graph.php");
 ?>
-
-
-<?php 
-  if ($config["AUTO_UPDATAE_DATA"]) {
-?>
-        <script type="text/javascript">
-	        // Little hack to automatically call the data updater script. 
-	        // This could cause problems when the amount of data increses.
-	        // It would be better to call this from you continuous integration server.
-	        $.getJSON("update.php", function(data) {});
-		</script>
-<?php
-  }
-?>
 </body></html>
