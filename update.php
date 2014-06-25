@@ -24,10 +24,12 @@ foreach ($modules as $key => $tmpModule) {
 
 			$timestamp = $moduleForBuildTime->date->getTimestamp()*1000;
 			$summaryValues[$timestamp] = $module->numberOfViolations;
-			$detailValues[$timestamp] = array(
-				"Priotity-1"=>$module->priority1,
-				"Priotity-2"=>$module->priority2,
-				"Priotity-3"=>$module->priority3);
+			if(isset($module->priority1)) {
+				$detailValues[$timestamp] = array(
+					"Priotity-1"=>$module->priority1,
+					"Priotity-2"=>$module->priority2,
+					"Priotity-3"=>$module->priority3);
+			}
 	    }
 	}
 
