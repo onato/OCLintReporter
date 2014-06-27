@@ -36,10 +36,10 @@ foreach ($modules as $key => $tmpModule) {
 			$moduleForBuildTimeInThisBuild = new Module();
 			$moduleForBuildTimeInThisBuild->deserializeSummary($archiveDir.$buildNumber."/".$firstModule->filename);
 
-			$timestamp = $moduleForBuildTimeInThisBuild->date->getTimestamp()*1000;
-			$summaryValues[$timestamp] = $module->numberOfViolations;
+			$timestampForThisBuild = $moduleForBuildTimeInThisBuild->date->getTimestamp()*1000;
+			$summaryValues[$timestampForThisBuild] = $module->numberOfViolations;
 			if(isset($module->priority1)) {
-				$detailValues[$timestamp] = array(
+				$detailValues[$timestampForThisBuild] = array(
 					"Priotity-1"=>$module->priority1,
 					"Priotity-2"=>$module->priority2,
 					"Priotity-3"=>$module->priority3
