@@ -8,6 +8,10 @@ $archiveDir = $config["ARCHIVE_DIR"];
 $modules = modulesInDirectory($reportsDir);
 $firstModule = array_values($modules)[0];
 
+$moduleForBuildTime = new Module();
+$moduleForBuildTime->deserializeSummary($reportsDir.$firstModule->filename);
+$timestamp = $moduleForBuildTime->date->getTimestamp()*1000;
+
 foreach ($modules as $key => $tmpModule) {
 	$filename = $tmpModule->filename;
 	$dh  = opendir($archiveDir);
@@ -33,10 +37,6 @@ foreach ($modules as $key => $tmpModule) {
 	    }
 	}
 
-	$moduleForBuildTime = new Module();
-	$moduleForBuildTime->deserializeSummary($reportsDir.$firstModule->filename);
-	$timestamp = $moduleForBuildTime->date->getTimestamp()*1000;
-
 	$latestModule = new Module();
 	$latestModule->deserializeSummary($reportsDir.$filename);
 	$summaryValues[$timestamp] = $latestModule->numberOfViolations;
@@ -45,10 +45,10 @@ foreach ($modules as $key => $tmpModule) {
 		"Priotity-2"=>$latestModule->priority2,
 		"Priotity-3"=>$latestModule->priority3);
 
-	// print_r($summaryValues);
+	print_r($summaryValues);
 	ksort($summaryValues);
 	ksort($detailValues);
-	// print_r($summaryValues);
+	print_r($summaryValues);
 
 	writeOverview($summaryValues, $filename);
 	writeDetail($detailValues, $filename);
