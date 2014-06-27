@@ -45,10 +45,10 @@ foreach ($modules as $key => $tmpModule) {
 		"Priotity-2"=>$latestModule->priority2,
 		"Priotity-3"=>$latestModule->priority3);
 
-	print_r($summaryValues);
+	// print_r($summaryValues);
 	ksort($summaryValues);
 	ksort($detailValues);
-	print_r($summaryValues);
+	// print_r($summaryValues);
 
 	writeOverview($summaryValues, $filename);
 	writeDetail($detailValues, $filename);
