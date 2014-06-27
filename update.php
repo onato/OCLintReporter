@@ -18,24 +18,6 @@ foreach ($modules as $key => $tmpModule) {
 	$buildNumbers = array();
 	$summaryValues = array();
 	$detailsValues = array();
-	while (false !== ($buildNumber = readdir($dh))) {
-	    if (strpos($buildNumber,".") === false) {
-	    	$content = "";
-			$module = new Module();
-			$module->deserializeSummary($archiveDir.$buildNumber."/".$filename);
-			$moduleForBuildTime = new Module();
-			$moduleForBuildTime->deserializeSummary($archiveDir.$buildNumber."/".$firstModule->filename);
-
-			$timestamp = $moduleForBuildTime->date->getTimestamp()*1000;
-			$summaryValues[$timestamp] = $module->numberOfViolations;
-			if(isset($module->priority1)) {
-				$detailValues[$timestamp] = array(
-					"Priotity-1"=>$module->priority1,
-					"Priotity-2"=>$module->priority2,
-					"Priotity-3"=>$module->priority3);
-			}
-	    }
-	}
 
 	$latestModule = new Module();
 	$latestModule->deserializeSummary($reportsDir.$filename);
@@ -43,7 +25,28 @@ foreach ($modules as $key => $tmpModule) {
 	$detailValues[$timestamp] = array(
 		"Priotity-1"=>$latestModule->priority1,
 		"Priotity-2"=>$latestModule->priority2,
-		"Priotity-3"=>$latestModule->priority3);
+		"Priotity-3"=>$latestModule->priority3
+	);
+
+	while (false !== ($buildNumber = readdir($dh))) {
+	    if (strpos($buildNumber,".") === false) {
+	    	$content = "";
+			$module = new Module();
+			$module->deserializeSummary($archiveDir.$buildNumber."/".$filename);
+			$moduleForBuildTimeInThisBuild = new Module();
+			$moduleForBuildTimeInThisBuild->deserializeSummary($archiveDir.$buildNumber."/".$firstModule->filename);
+
+			$timestamp = $moduleForBuildTimeInThisBuild->date->getTimestamp()*1000;
+			$summaryValues[$timestamp] = $module->numberOfViolations;
+			if(isset($module->priority1)) {
+				$detailValues[$timestamp] = array(
+					"Priotity-1"=>$module->priority1,
+					"Priotity-2"=>$module->priority2,
+					"Priotity-3"=>$module->priority3
+				);
+			}
+	    }
+	}
 
 	// print_r($summaryValues);
 	ksort($summaryValues);
