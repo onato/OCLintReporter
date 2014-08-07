@@ -19,11 +19,12 @@ while (false !== ($filename = readdir($dh))) {
 }
 
 $sortBy = "ratio";
-if (isset($_POST["sortname"])) {
-	$sortBy = $_POST["sortname"];
+if (isset($_REQUEST["sortname"])) {
+	$sortBy = $_REQUEST["sortname"];
 }
+
 $ascending = false;
-if (isset($_POST["sortorder"]) && $_POST["sortorder"]=="asc") {
+if (isset($_REQUEST["sortorder"]) && $_REQUEST["sortorder"]=="asc") {
 	$ascending = true;
 }
 

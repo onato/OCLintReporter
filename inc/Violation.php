@@ -27,7 +27,16 @@ Class Violation{
       $this->rule = $dict["rule"];
       $this->priority = $dict["priority"];
       $this->message = $dict["message"];
-      $this->link = $config["GITHUB_ROOT"] . $this->path . "#L" . $this->startLine . "-" . $this->endLine;
+
+      $path = $this->path;
+      $gitHubRoot = $config["GITHUB_ROOT"];
+      if (array_key_exists($this->module->name, $config["GITHUB_ROOTS"])) {
+         $gitHubRoot = $config["GITHUB_ROOTS"][$this->module->name];
+         $pathPrefixToRemove = $config["COCOAPODS_PREFIX"].$this->module->name;
+         $path = str_replace($pathPrefixToRemove, "", $path);
+      }
+
+      $this->link = $gitHubRoot . $path . "#L" . $this->startLine . "-" . $this->endLine;
    }
 };
 ?>

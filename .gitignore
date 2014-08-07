@@ -3,5 +3,6 @@ reports/*/
 
 data/details/*
 data/overview/*
+export/*
 
 .DS_Store

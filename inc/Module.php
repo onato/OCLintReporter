@@ -33,6 +33,7 @@ Class Module{
 
       foreach ($json["violation"] as $violationDict) {
          $violation = new Violation();
+         $violation->module = $this;
          $violation->deserialize($violationDict);
          $this->violations[] = $violation;
       }

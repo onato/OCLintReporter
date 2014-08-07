@@ -24,6 +24,7 @@ include("inc/Module.php");
 					{
 						url : 'overview.php',
 		                dataType : 'json',
+		                method : 'GET',
 						height: "auto",
 						width: "auto",
 						sortname : sortArray[0],
