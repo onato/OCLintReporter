@@ -12,6 +12,8 @@ $moduleForBuildTime = new Module();
 $moduleForBuildTime->deserializeSummary($reportsDir.$firstModule->filename);
 $timestamp = $moduleForBuildTime->date->getTimestamp()*1000;
 
+$foundGithubRepos = array();
+
 foreach ($modules as $key => $tmpModule) {
 	$filename = $tmpModule->filename;
 	$dh  = opendir($archiveDir);
@@ -55,6 +57,7 @@ foreach ($modules as $key => $tmpModule) {
 
 	writeOverview($summaryValues, $filename);
 	writeDetail($detailValues, $filename);
+
 }
 
 function writeOverview($values, $filename) {
