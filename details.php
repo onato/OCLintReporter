@@ -59,7 +59,7 @@ $module->deserialize($config["REPORTS_DIR"].$reportName.".json");
 							title: "Open your project in Xcode<br/>Shift-Command-O (⇧⌘O) <br/>Paste this text.",
 							buttons: {
 								confirm: {
-									label: "Show this violation in Github"
+									label: "Show this violation in GitHub"
 								}
 							},
 							value:filename,

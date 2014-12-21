@@ -23,7 +23,11 @@ You can then drill down into the specific report to see the violations. You can 
 
 ![Details](screenshots/Details.png)
 
-##Clicking on a violation will show you the code on github.
+##Clicking on a violation will show you what to paste into the Open Quickly dialoge in XCode.
+
+![Code](screenshots/OpenQuickly.jpg)
+
+###Or take you to the line of code in GitHub for projects stored there.
 
 ![Code](screenshots/Code.png)
 
