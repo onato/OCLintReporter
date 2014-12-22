@@ -84,7 +84,7 @@ include("inc/Module.php");
 		                	}, {
 		                        display : 'Date',
 		                        name : 'date',
-		                        width : 100,
+		                        width : 150,
 		                        sortable : true,
 		                        process: didSelectRow
 		                	} 

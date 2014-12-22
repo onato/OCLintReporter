@@ -1,7 +1,7 @@
 OCLint Reporter
 ==============
 
-OCLint Reporter is a web application for presenting your OCLint JSON reports in a comfortable manner. Just put OCLintReporter on your webserver and have OCLint generate your JSON reports in the `reports` folder.
+OCLint Reporter is a web application for presenting your OCLint JSON reports in a comfortable manner. Just put OCLint Reporter on your webserver and have OCLint generate your JSON reports in the `reports` folder.
 
 Right now it implements enough to be usefull to me. I can sort the overview to workout which module needs work. I can drill down to view its violations and see the offending lines of code in github.
 
@@ -9,12 +9,12 @@ Right now it implements enough to be usefull to me. I can sort the overview to w
 Clone the repository into an folder used by your web server. Have [OCLint](http://oclint.org/) save the JSON reports in the `reports` folder. These will be picked up and displayed.
 
 ##Continuous Integration (Jenkins, Bots, etc.)
-It is useful to automate the creation of the JSON reports required by OCLintReporter. An example shell script can be found on the [Continuous Integration Wiki page](https://github.com/onato/OCLintReporter/wiki/Continuous-Integration).
+It is useful to automate the creation of the JSON reports required by OCLint Reporter. An example shell script can be found on the [Continuous Integration Wiki page](https://github.com/onato/OCLintReporter/wiki/Continuous-Integration).
 
 #Screenshots
 
 ##Overview
-OCLintReporter gives you an overview first of all so you can see which classes are in worst shape. 
+OCLint Reporter gives you an overview first of all so you can see which classes are in worst shape. 
 
 ![Overview](screenshots/Overview.png)
 
