@@ -1,3 +1,4 @@
+![OCLint Reporter Logo](css/images/apple-touch-icon-152x152.png) 
 OCLint Reporter
 ==============
 
