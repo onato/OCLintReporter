@@ -1,4 +1,5 @@
 <?php
+
 Class Violation{
    public $name;
    public $path;
@@ -17,7 +18,12 @@ Class Violation{
       global $config;
 
       $path = $dict["path"];
-      $this->path = str_replace($config["ROOT"], "", $path);
+      if (array_key_exists("ROOTS", $config)) {
+         $this->path = str_replace($config["ROOT"], "", $path);
+      } else {
+         $this->path = substr($path, strpos($path, $this->module->name) + strlen($this->module->name) + 1);
+      }
+
       $this->name = basename($path);
 
       $this->startLine = $dict["startLine"];
