@@ -1,4 +1,7 @@
 <?php
+
+error_reporting(E_ALL & ~E_NOTICE);
+
 include_once("inc/Config.php");
 include_once("inc/Module.php");
 
@@ -33,19 +36,25 @@ foreach ($modules as $key => $tmpModule) {
 	while (false !== ($buildNumber = readdir($dh))) {
 	    if (strpos($buildNumber,".") === false) {
 	    	$content = "";
-			$module = new Module();
-			$module->deserializeSummary($archiveDir.$buildNumber."/".$filename);
-			$moduleForBuildTimeInThisBuild = new Module();
-			$moduleForBuildTimeInThisBuild->deserializeSummary($archiveDir.$buildNumber."/".$firstModule->filename);
+	    	$pathToReport = $archiveDir.$buildNumber."/".$filename;
+			if (file_exists($pathToReport)) {
+				$module = new Module();
+				$module->deserializeSummary($pathToReport);
+				$moduleForBuildTimeInThisBuild = new Module();
+				$moduleForBuildTimeInThisBuild->deserializeSummary($archiveDir.$buildNumber."/".$firstModule->filename);
 
-			$timestampForThisBuild = $moduleForBuildTimeInThisBuild->date->getTimestamp()*1000;
-			$summaryValues[$timestampForThisBuild] = $module->numberOfViolations;
-			if(isset($module->priority1)) {
-				$detailValues[$timestampForThisBuild] = array(
-					"Priotity-1"=>$module->priority1,
-					"Priotity-2"=>$module->priority2,
-					"Priotity-3"=>$module->priority3
-				);
+				$timestampForThisBuild = $moduleForBuildTimeInThisBuild->date->getTimestamp()*1000;
+				if($timestampForThisBuild==0) {
+					$timestampForThisBuild = $module->date->getTimestamp()*1000;
+				}
+				$summaryValues[$timestampForThisBuild] = $module->numberOfViolations;
+				if(isset($module->priority1)) {
+					$detailValues[$timestampForThisBuild] = array(
+						"Priotity-1"=>$module->priority1,
+						"Priotity-2"=>$module->priority2,
+						"Priotity-3"=>$module->priority3
+					);
+				}
 			}
 	    }
 	}

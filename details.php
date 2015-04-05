@@ -64,7 +64,7 @@ $module->deserialize($config["REPORTS_DIR"].$reportName.".json");
 							},
 							value:filename,
 							callback: function(result) {                
-								if (result !== null) {                                             
+								if (result !== null) {
 									window.location.href = link;
 								}
 							}
@@ -88,7 +88,7 @@ $module->deserialize($config["REPORTS_DIR"].$reportName.".json");
 			});
 
 			$( document ).ready(function() {
-				$('.overview').flexigrid({height:25	});
+				$('.overview').flexigrid({height:35});
 				grid = $('.data').flexigrid(
 					{
 						url : 'module.php?reportName=<?php echo $reportName; ?>.json',
